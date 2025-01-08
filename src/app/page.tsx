@@ -1,7 +1,7 @@
 import { SystemStatus, LoginForm } from "@/components/ClientComponents";
 import ClientWrapper from "@/components/ClientWrapper";
 
-export default async function DashboardPage() {
+export default function HomePage() {
   return (
     <div className="container mx-auto p-4">
       <div className="flex flex-col items-center justify-center min-h-screen">
