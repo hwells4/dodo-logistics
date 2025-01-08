@@ -1,15 +1,10 @@
-import * as dotenv from 'dotenv'
-import path from 'path'
-import { DatabaseConnection } from '../../src/lib/config/database'
+import '@testing-library/jest-dom'
+import { TextEncoder, TextDecoder } from 'util'
+import { setupTestEnvironment } from './test-env'
 
-export async function setupDatabase() {
-  const envPath = path.resolve(process.cwd(), '.env.local')
-  dotenv.config({ path: envPath })
+// Setup environment before tests
+setupTestEnvironment()
 
-  const databaseConfig = {
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  }
-
-  DatabaseConnection.initialize(databaseConfig)
-} 
+// Polyfill for jsdom
+global.TextEncoder = TextEncoder
+global.TextDecoder = TextDecoder as any 

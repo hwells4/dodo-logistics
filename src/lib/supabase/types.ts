@@ -1121,6 +1121,24 @@ export type Database = {
         }
         Returns: string
       }
+      get_route_sequence: {
+        Args: {
+          p_route_id: string
+        }
+        Returns: {
+          sequence_number: number
+          from_location_id: string
+          to_location_id: string
+          from_coordinates: unknown
+          to_coordinates: unknown
+          from_address: string
+          to_address: string
+          service_instance_id: string
+          has_cached_distance: boolean
+          drive_time_minutes: number
+          drive_distance_miles: number
+        }[]
+      }
       get_table_relationships: {
         Args: Record<PropertyKey, never>
         Returns: {
