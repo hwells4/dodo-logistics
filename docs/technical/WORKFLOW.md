@@ -1,8 +1,10 @@
 # Development Workflow
 
 ---
+
 ai_component: true
 ai_purpose: "Development process documentation"
+
 ---
 
 ## Environment Setup
@@ -14,6 +16,7 @@ cp .env.example .env.local
 ```
 
 Configure the following required environment variables:
+
 ```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -79,6 +82,7 @@ Staging: A production-like environment for final testing and verification before
 Production: The live environment where the application serves end users.
 
 Each environment should maintain its own:
+
 - Supabase instance
 - Environment variables
 - Configuration settings

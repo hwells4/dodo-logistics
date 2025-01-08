@@ -37,51 +37,56 @@ import { useAuth } from '@/lib/auth/AuthContext'
 import type { ComponentName } from '@/types/components'
 
 interface ComponentNameProps {
-  /** Document each prop with a clear description */
-  propOne: string
-  /** Include type information and usage requirements */
-  propTwo?: number
+/** Document each prop with a clear description \*/
+propOne: string
+/** Include type information and usage requirements \*/
+propTwo?: number
 }
 
-/**
- * ComponentName handles [specific functionality].
- *
- * @example
- * ```tsx
- * <ComponentName
- *   propOne="example"
- *   propTwo={123}
- * />
- * ```
- *
- * @dependencies
- * - AuthContext (if authentication required)
- * - useQuery (if data fetching required)
- */
-export function ComponentName({
-  propOne,
-  propTwo = 0
-}: ComponentNameProps): JSX.Element {
-  // State management
-  const [state, setState] = useState<StateType>(initialState)
-  
-  // Context usage
-  const { user } = useAuth()
-  
-  // Event handlers
-  const handleEvent = (): void => {
-    try {
-      // Handler logic
-    } catch (error) {
-      console.error('ComponentName.handleEvent:', error)
-    }
-  }
+/\*\*
 
-  return (
-    <div className="consistent-tailwind-classes">
-      {/* Implementation */}
-    </div>
-  )
+- ComponentName handles [specific functionality].
+-
+- @example
+- ```tsx
+
+  ```
+- <ComponentName
+- propOne="example"
+- propTwo={123}
+- />
+- ```
+
+  ```
+-
+- @dependencies
+- - AuthContext (if authentication required)
+- - useQuery (if data fetching required)
+    \*/
+    export function ComponentName({
+    propOne,
+    propTwo = 0
+    }: ComponentNameProps): JSX.Element {
+    // State management
+    const [state, setState] = useState<StateType>(initialState)
+
+// Context usage
+const { user } = useAuth()
+
+// Event handlers
+const handleEvent = (): void => {
+try {
+// Handler logic
+} catch (error) {
+console.error('ComponentName.handleEvent:', error)
+}
+}
+
+return (
+<div className="consistent-tailwind-classes">
+{/_ Implementation _/}
+</div>
+)
 }
 ///
 
@@ -100,15 +105,15 @@ import { render, screen } from '@testing-library/react'
 import { ComponentName } from './ComponentName'
 
 describe('ComponentName', () => {
-  const defaultProps = {
-    propOne: 'test',
-    propTwo: 123
-  }
+const defaultProps = {
+propOne: 'test',
+propTwo: 123
+}
 
-  it('renders with default props', () => {
-    render(<ComponentName {...defaultProps} />)
-    // Add assertions
-  })
+it('renders with default props', () => {
+render(<ComponentName {...defaultProps} />)
+// Add assertions
+})
 })
 ///
 

@@ -1,13 +1,16 @@
 # AI Development Guide
 
 ---
+
 ai_primary: true
 ai_purpose: "Primary documentation for AI-assisted development"
 ai_supported_tasks:
-  - "Component creation and modification"
-  - "Authentication flow implementation"
-  - "API integration"
-  - "Database operations"
+
+- "Component creation and modification"
+- "Authentication flow implementation"
+- "API integration"
+- "Database operations"
+
 ---
 
 ## Overview
@@ -17,21 +20,27 @@ This project is a SaaS template built with Next.js, TypeScript, and Supabase. It
 ## Core Development Patterns
 
 ### Component Development
+
 All components follow the pattern established in `/src/components/README.md`. Key requirements:
+
 - TypeScript interfaces with JSDoc comments
 - Proper error handling
 - Tailwind CSS for styling
 - Comprehensive testing
 
 ### Authentication
+
 Authentication flows are implemented in `/src/app/(auth)` following these patterns:
+
 - Supabase authentication
 - Protected routes
 - Session management
 - Error handling
 
 ### Database Operations
+
 Database operations use Supabase and follow these patterns:
+
 - Type-safe queries
 - Error handling
 - Data validation
@@ -40,11 +49,13 @@ Database operations use Supabase and follow these patterns:
 ## Development Workflow
 
 1. Environment Setup
+
    - Configure Supabase credentials
    - Set up development environment
    - Install dependencies
 
 2. Feature Development
+
    - Follow component patterns
    - Implement required tests
    - Update documentation
@@ -59,12 +70,14 @@ Database operations use Supabase and follow these patterns:
 When assisting with development:
 
 1. Component Creation
+
    - Reference the components README
    - Follow TypeScript patterns
    - Include proper error handling
    - Add tests
 
 2. Authentication Features
+
    - Use Supabase auth
    - Implement proper validation
    - Handle edge cases

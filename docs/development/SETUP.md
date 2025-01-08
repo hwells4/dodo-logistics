@@ -1,8 +1,10 @@
 # Development Setup Guide
 
 ---
+
 ai_component: true
 ai_purpose: "Development environment setup documentation"
+
 ---
 
 ## Environment Setup
@@ -152,6 +154,7 @@ Database connection strings are correct and accessible.
 ## Environment Variables
 
 Required environment variables:
+
 ```bash
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your_project_url
@@ -165,6 +168,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ## Project Structure
 
 The project follows this structure:
+
 ```
 src/
 ├── app/
@@ -184,10 +188,12 @@ src/
 ## Testing Setup
 
 ### Prerequisites
+
 - Test database configuration
 - Test environment variables
 
 ### Running Tests
+
 ```bash
 # Unit tests
 npm run test:unit

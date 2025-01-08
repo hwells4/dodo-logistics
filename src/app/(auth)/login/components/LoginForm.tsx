@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { useAuth } from '@/components/modules/auth/AuthContext';
+import { useAuth } from "@/components/modules/auth/AuthContext";
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const { signIn } = useAuth();
 
@@ -49,7 +49,9 @@ export default function LoginForm() {
               type="email"
               placeholder="name@example.com"
               value={formData.email}
-              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
               autoComplete="email"
             />
           </div>
@@ -60,16 +62,18 @@ export default function LoginForm() {
               type="password"
               placeholder="Enter your password"
               value={formData.password}
-              onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, password: e.target.value }))
+              }
               autoComplete="current-password"
             />
           </div>
-          <Button 
-            type="submit" 
-            className="w-full" 
+          <Button
+            type="submit"
+            className="w-full"
             disabled={isLoading || !formData.email || !formData.password}
           >
-            {isLoading ? 'Logging in...' : 'Login'}
+            {isLoading ? "Logging in..." : "Login"}
           </Button>
         </form>
       </CardContent>

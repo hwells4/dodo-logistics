@@ -4,7 +4,11 @@ interface CardProps {
 }
 
 export function Card({ children, className }: CardProps) {
-  return <div className={`border rounded-lg shadow-md p-4 ${className}`}>{children}</div>
+  return (
+    <div className={`border rounded-lg shadow-md p-4 ${className}`}>
+      {children}
+    </div>
+  );
 }
 
 interface CardHeaderProps {
@@ -12,7 +16,7 @@ interface CardHeaderProps {
 }
 
 export function CardHeader({ children }: CardHeaderProps) {
-  return <div className="border-b pb-2">{children}</div>
+  return <div className="border-b pb-2">{children}</div>;
 }
 
 interface CardTitleProps {
@@ -20,7 +24,7 @@ interface CardTitleProps {
 }
 
 export function CardTitle({ children }: CardTitleProps) {
-  return <h2 className="text-lg font-bold">{children}</h2>
+  return <h2 className="text-lg font-bold">{children}</h2>;
 }
 
 interface CardDescriptionProps {
@@ -28,7 +32,7 @@ interface CardDescriptionProps {
 }
 
 export function CardDescription({ children }: CardDescriptionProps) {
-  return <p className="text-sm text-gray-600">{children}</p>
+  return <p className="text-sm text-gray-600">{children}</p>;
 }
 
 interface CardContentProps {
@@ -36,7 +40,7 @@ interface CardContentProps {
 }
 
 export function CardContent({ children }: CardContentProps) {
-  return <div className="py-4">{children}</div>
+  return <div className="py-4">{children}</div>;
 }
 
 interface CardFooterProps {
@@ -44,5 +48,5 @@ interface CardFooterProps {
 }
 
 export function CardFooter({ children }: CardFooterProps) {
-  return <div className="pt-4">{children}</div>
-} 
+  return <div className="pt-4">{children}</div>;
+}

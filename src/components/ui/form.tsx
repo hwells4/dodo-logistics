@@ -1,19 +1,24 @@
+import { UseFormReturn } from "react-hook-form";
+
 interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   children: React.ReactNode;
 }
 
 export function Form({ children, ...props }: FormProps) {
-  return <form {...props}>{children}</form>
+  return <form {...props}>{children}</form>;
 }
 
 interface FormFieldProps {
-  control: any; // Replace with the correct type if known
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  form: UseFormReturn<any>;
   name: string;
-  render: (field: any) => React.ReactNode; // Replace with the correct type if known
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  render: (props: { field: any }) => React.ReactNode;
 }
 
-export function FormField({ control, name, render }: FormFieldProps) {
-  return render({ field: control[name] })
+export function FormField({ form, name, render }: FormFieldProps) {
+  const field = form.register(name);
+  return render({ field });
 }
 
 interface FormItemProps {
@@ -21,7 +26,7 @@ interface FormItemProps {
 }
 
 export function FormItem({ children }: FormItemProps) {
-  return <div className="mb-4">{children}</div>
+  return <div className="mb-4">{children}</div>;
 }
 
 interface FormLabelProps {
@@ -29,7 +34,7 @@ interface FormLabelProps {
 }
 
 export function FormLabel({ children }: FormLabelProps) {
-  return <label className="block text-sm font-medium">{children}</label>
+  return <label className="block text-sm font-medium">{children}</label>;
 }
 
 interface FormControlProps {
@@ -37,7 +42,7 @@ interface FormControlProps {
 }
 
 export function FormControl({ children }: FormControlProps) {
-  return <div className="mt-1">{children}</div>
+  return <div className="mt-1">{children}</div>;
 }
 
 interface FormMessageProps {
@@ -45,5 +50,5 @@ interface FormMessageProps {
 }
 
 export function FormMessage({ children }: FormMessageProps) {
-  return <span className="text-red-500 text-sm">{children}</span>
-} 
+  return <span className="text-red-500 text-sm">{children}</span>;
+}

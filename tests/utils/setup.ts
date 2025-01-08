@@ -1,10 +1,10 @@
-import '@testing-library/jest-dom'
-import { TextEncoder, TextDecoder } from 'util'
-import { setupTestEnvironment } from './test-env'
+import "@testing-library/jest-dom";
+import { TextEncoder, TextDecoder } from "util";
+import { setupTestEnvironment } from "./test-env";
 
 // Setup environment before tests
-setupTestEnvironment()
+setupTestEnvironment();
 
 // Polyfill for jsdom
-global.TextEncoder = TextEncoder
-global.TextDecoder = TextDecoder as any 
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder as any;

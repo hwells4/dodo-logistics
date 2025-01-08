@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from "@/lib/supabase/client";
 
 export function LogoutButton() {
   const handleLogout = async () => {
@@ -14,4 +14,4 @@ export function LogoutButton() {
       Logout
     </Button>
   );
-} 
+}

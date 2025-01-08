@@ -1,8 +1,10 @@
 # Supabase Integration
 
 ---
+
 ai_component: true
 ai_purpose: "Database and authentication integration documentation"
+
 ---
 
 ## Overview

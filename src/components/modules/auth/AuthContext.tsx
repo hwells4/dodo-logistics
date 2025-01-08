@@ -1,14 +1,17 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session, AuthError } from '@supabase/supabase-js';
-import { supabase } from '@/lib/supabase/client';
+import { createContext, useContext, useEffect, useState } from "react";
+import { User, Session } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase/client";
 
 interface AuthState {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<{
+  signIn: (
+    email: string,
+    password: string,
+  ) => Promise<{
     error: string | null;
   }>;
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
@@ -32,7 +35,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         setSession(session);
         setUser(session.user);
@@ -54,17 +59,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
 
       if (error) {
-        if (error.message.includes('Invalid login')) {
-          return { error: 'Invalid email or password' };
+        console.error("Sign in error:", error.message);
+        if (error.message.includes("Invalid login")) {
+          return { error: "Invalid email or password" };
         }
-        if (error.message.includes('Email not confirmed')) {
-          return { error: 'Please verify your email first' };
+        if (error.message.includes("Email not confirmed")) {
+          return { error: "Please verify your email first" };
         }
         return { error: error.message };
       }
 
       if (!data.user || !data.session) {
-        return { error: 'No user found with these credentials' };
+        return { error: "No user found with these credentials" };
       }
 
       setSession(data.session);
@@ -72,13 +78,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return { error: null };
     } catch (error) {
-      return { error: 'An unexpected error occurred' };
+      console.error("Unexpected error:", error);
+      return { error: "An unexpected error occurred" };
     }
   };
 
   const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({ email, password });
-    return { error };
+    try {
+      const { error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      return { error: signUpError };
+    } catch (unexpectedError) {
+      console.error("Signup error:", unexpectedError);
+      return { error: new Error("An unexpected error occurred") };
+    }
   };
 
   const signOut = async () => {
@@ -86,12 +101,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetPassword = async (email: string) => {
-    const { error } = await supabase.auth.resetPasswordForEmail(email);
-    return { error };
+    const { error: resetError } =
+      await supabase.auth.resetPasswordForEmail(email);
+    return { error: resetError };
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signIn, signUp, signOut, resetPassword }}>
+    <AuthContext.Provider
+      value={{ user, session, loading, signIn, signUp, signOut, resetPassword }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -100,7 +118,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-} 
+}

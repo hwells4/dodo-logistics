@@ -1,10 +1,9 @@
-import { initializeDatabase } from './lib/config/init-database'
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { initializeDatabase } from "./lib/config/init-database";
+import { NextResponse } from "next/server";
 
 // Initialize database once
-initializeDatabase()
+initializeDatabase();
 
-export function middleware(request: NextRequest) {
-  return NextResponse.next()
-} 
+export default function middleware() {
+  return NextResponse.next();
+}

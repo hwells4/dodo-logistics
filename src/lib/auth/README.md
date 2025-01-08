@@ -1,8 +1,10 @@
 # Authentication Implementation
 
 ---
+
 ai_component: true
 ai_purpose: "Authentication system documentation"
+
 ---
 
 ## Overview

@@ -14,7 +14,12 @@
     "sync-types:watch": "nodemon --watch src/lib/supabase/types.ts --exec 'npm run sync-types'",
     "sync-types:force": "rm -f src/lib/supabase/types.ts && npm run sync-types",
     "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate": "npm run lint && npm run type-check && npm run test:all",
+    "prepare": "husky install && sort-package-json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -57,10 +62,28 @@
     "jest-environment-jsdom": "^29.6.0",
     "lint-staged": "^15.3.0",
     "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "sort-package-json": "^2.12.0",
     "supabase": "^1.115.5",
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "jest --bail --findRelatedTests",
+      "tsc --noEmit"
+    ],
+    "*.{js,jsx,ts,tsx,md,html,css}": [
+      "prettier --write"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ],
+    "*.{json,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }

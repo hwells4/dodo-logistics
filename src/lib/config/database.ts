@@ -1,29 +1,30 @@
 export type Database = {
   public: {
-    Tables: {
-      [key: string]: any
-    }
-  }
-}
+    Tables: Record<string, unknown>;
+  };
+};
 
 export interface DatabaseConfig {
-  url: string
-  anonKey: string
-  serviceRole?: string
+  url: string;
+  anonKey: string;
+  serviceRole?: string;
 }
 
 export class DatabaseConnection {
   private static instance: DatabaseConnection;
-  private config: DatabaseConfig;
+  private config: {
+    url: string;
+    anonKey: string;
+  };
   private static isInitialized = false;
 
-  private constructor(config: DatabaseConfig) {
+  private constructor(config: { url: string; anonKey: string }) {
     this.config = config;
   }
 
-  public static initialize(config: DatabaseConfig) {
+  public static initialize(config: { url: string; anonKey: string }) {
     if (!DatabaseConnection.isInitialized) {
-      console.log('Creating new DatabaseConnection instance');
+      console.log("Creating new DatabaseConnection instance");
       DatabaseConnection.instance = new DatabaseConnection(config);
       DatabaseConnection.isInitialized = true;
     }
@@ -34,17 +35,22 @@ export class DatabaseConnection {
     if (!DatabaseConnection.isInitialized) {
       const config = {
         url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+        anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       };
       if (config.url && config.anonKey) {
         return DatabaseConnection.initialize(config);
       }
-      throw new Error('Database connection not initialized and no environment variables available');
+      throw new Error(
+        "Database connection not initialized and no environment variables available",
+      );
     }
     return DatabaseConnection.instance;
   }
 
-  public getConfig(): DatabaseConfig {
+  public getConfig(): {
+    url: string;
+    anonKey: string;
+  } {
     return this.config;
   }
 }
