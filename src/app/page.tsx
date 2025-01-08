@@ -1,4 +1,4 @@
-import ClientWrapper from "@/components/core/ClientWrapper";
+import ClientWrapper from "@/components/ClientWrapper";
 import LoginForm from "@/app/(auth)/login/components/LoginForm";
 import SystemStatus from "@/components/features/debug/SystemStatus";
 
