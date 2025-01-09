@@ -79,12 +79,6 @@
     ],
     "*.{js,jsx,ts,tsx,md,html,css}": [
       "prettier --write"
-    ],
-    "package.json": [
-      "sort-package-json"
-    ],
-    "*.{json,yml,yaml}": [
-      "prettier --write"
     ]
   }
 }
