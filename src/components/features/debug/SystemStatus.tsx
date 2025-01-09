@@ -5,44 +5,72 @@ import { supabase } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
+console.warn('=== SYSTEM STATUS COMPONENT LOADED ===');
+
 export default function SystemStatus() {
-  const { user, loading } = useAuth();
-  const [dbStatus, setDbStatus] = useState<"checking" | "connected" | "error">(
-    "checking",
-  );
-  const [sessionStatus, setSessionStatus] = useState<
-    "checking" | "active" | "none"
-  >("checking");
+  console.warn('=== SYSTEM STATUS RENDERED ===', new Date().toISOString());
+  
+  // All hooks must be at the top, before any conditionals
+  const { user, loading, signOut } = useAuth();
+  const [dbStatus, setDbStatus] = useState<"checking" | "connected" | "error">("error");
+  const [sessionStatus, setSessionStatus] = useState<"checking" | "active" | "none">("none");
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
+  const [mounted, setMounted] = useState(false);
 
-  // Check database connection
+  // Mount effect
   useEffect(() => {
+    setMounted(true);
+    console.warn('=== SYSTEM STATUS MOUNTED ===');
+  }, []);
+
+  // Debug logs
+  useEffect(() => {
+    if (!mounted) return;
+    console.log('Auth State:', { user, loading });
+  }, [user, loading, mounted]);
+
+  // Database check
+  useEffect(() => {
+    if (!mounted) return;
     async function checkDatabase() {
-      try {
-        const { error } = await supabase.from("clients").select("id").limit(1);
-
-        if (error) throw error;
-        setDbStatus("connected");
-      } catch (error) {
-        console.error("Database check failed:", error);
-        setDbStatus("error");
-      }
+      const { data, error } = await supabase.auth.getSession();
+      setDbStatus(error ? "error" : "connected");
+      console.warn('Database Check:', { data, error });
     }
-
     checkDatabase();
-  }, [lastRefresh]);
+  }, [lastRefresh, mounted]);
 
-  // Check session status
+  // Session check
   useEffect(() => {
+    if (!mounted) return;
     async function checkSession() {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      const { data: { session } } = await supabase.auth.getSession();
+      console.warn('Session Status:', {
+        hasSession: !!session,
+        isValid: session?.access_token ? 'Yes' : 'No',
+        expiresAt: session?.expires_at ? new Date(session.expires_at * 1000).toLocaleString() : 'N/A'
+      });
       setSessionStatus(session ? "active" : "none");
     }
-
     checkSession();
-  }, [lastRefresh]);
+  }, [lastRefresh, mounted]);
+
+  // State logging
+  useEffect(() => {
+    if (!mounted) return;
+    console.group('SystemStatus Debug');
+    console.log('Component State:', {
+      dbStatus,
+      sessionStatus,
+      user,
+      loading
+    });
+    console.groupEnd();
+  }, [dbStatus, sessionStatus, user, loading, mounted]);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleRefresh = () => {
     setDbStatus("checking");
@@ -50,17 +78,33 @@ export default function SystemStatus() {
     setLastRefresh(new Date());
   };
 
+  const handleLogout = async () => {
+    await signOut();
+    // Force refresh status after logout
+    handleRefresh();
+  };
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>System Status</CardTitle>
-          <button
-            onClick={handleRefresh}
-            className="text-sm text-gray-500 hover:text-gray-700"
-          >
-            Refresh
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleRefresh}
+              className="text-sm text-gray-500 hover:text-gray-700"
+            >
+              Refresh
+            </button>
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="text-sm text-red-500 hover:text-red-700"
+              >
+                Logout
+              </button>
+            )}
+          </div>
         </div>
       </CardHeader>
       <CardContent>
@@ -71,8 +115,8 @@ export default function SystemStatus() {
           </div>
           <div className="flex justify-between items-center">
             <span>Auth State:</span>
-            <StatusIndicator
-              status={loading ? "checking" : user ? "active" : "none"}
+            <StatusIndicator 
+              status={loading ? "checking" : (user ? "active" : "none")} 
             />
           </div>
           <div className="flex justify-between items-center">
