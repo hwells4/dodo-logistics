@@ -17,6 +17,7 @@ out/
 
 # Testing
 coverage/
+.env.test
 
 # Debug
 npm-debug.log*
