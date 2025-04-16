@@ -1,36 +1,27 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Environment files
-.env
-.env.local
-.env.*.local
+# dependencies
+/node_modules
 
-# But allow
-!.env.template
+# next.js
+/.next/
+/out/
 
-# Dependencies
-node_modules/
+# production
+/build
 
-# Next.js
-.next/
-out/
-
-# Testing
-coverage/
-.env.test
-
-# Debug
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-# System files
-.DS_Store
-*.pem
+# env files
+.env*
 
-# TypeScript
+# vercel
+.vercel
+
+# typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Supabase
-**/types.ts.backup
