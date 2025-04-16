@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 
 export default function CTASection() {
@@ -10,7 +12,11 @@ export default function CTASection() {
           service and a clean car in one stop!
         </p>
         <div className="flex justify-center">
-          <Button size="lg" className="bg-white text-red-600 hover:bg-neutral-100 px-12 py-6 text-lg">
+          <Button
+            size="lg"
+            className="bg-white text-red-600 hover:bg-neutral-100 px-12 py-6 text-lg"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
             Schedule Now
           </Button>
         </div>

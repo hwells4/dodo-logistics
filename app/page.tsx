@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -43,6 +45,7 @@ export default function Home() {
                 size="lg"
                 variant="outline"
                 className="border-white text-black hover:bg-white hover:text-neutral-900 focus:bg-white focus:text-neutral-900"
+                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               >
                 View Services
               </Button>
@@ -83,7 +86,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-neutral-50 py-16">
+      <section id="services" className="bg-neutral-50 py-16">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">Our Services</h2>
@@ -121,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-white py-16">
+      <section id="about" className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid gap-12 md:grid-cols-2">
             <div>
@@ -155,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="bg-neutral-50 py-16">
+      <section id="pricing" className="bg-neutral-50 py-16">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">Simple, Transparent Pricing</h2>
@@ -167,7 +170,7 @@ export default function Home() {
           <div className="grid gap-8 md:grid-cols-3">
             <PricingCard
               title="State Inspection"
-              price="$7.00"
+              price="$35.00"
               description="Quick, thorough state inspection for most passenger vehicles."
               features={["15-minute service", "Certified inspectors", "Digital records", "All passenger vehicles"]}
               cta="Schedule Inspection"
@@ -176,7 +179,7 @@ export default function Home() {
 
             <PricingCard
               title="Wash & Inspection"
-              price="$15.00"
+              price="$85.00"
               description="Our most popular package! Get your inspection and a basic wash in one visit."
               features={[
                 "Save time and money",
@@ -190,7 +193,7 @@ export default function Home() {
 
             <PricingCard
               title="Premium Wash"
-              price="$12.00"
+              price="$65.00"
               description="Our deluxe automatic wash with all the extras for a showroom shine."
               features={["Triple-foam polish", "Undercarriage wash", "Wheel cleaning", "Rain-X treatment"]}
               cta="Choose This Wash"
@@ -233,7 +236,7 @@ export default function Home() {
       </section>
 
       {/* Booking Form */}
-      <section className="bg-neutral-900 py-16 text-white">
+      <section id="contact" className="bg-neutral-900 py-16 text-white">
         <div className="container mx-auto px-4">
           <div className="grid gap-12 md:grid-cols-2">
             <div>

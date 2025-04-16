@@ -40,21 +40,21 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="font-medium hover:text-red-600">
+            <a href="/" className="font-medium hover:text-red-600">
               Home
-            </Link>
-            <Link href="#services" className="font-medium hover:text-red-600">
+            </a>
+            <a href="#services" className="font-medium hover:text-red-600">
               Services
-            </Link>
-            <Link href="#pricing" className="font-medium hover:text-red-600">
-              Pricing
-            </Link>
-            <Link href="#about" className="font-medium hover:text-red-600">
+            </a>
+            <a href="#about" className="font-medium hover:text-red-600">
               About Us
-            </Link>
-            <Link href="#contact" className="font-medium hover:text-red-600">
+            </a>
+            <a href="#pricing" className="font-medium hover:text-red-600">
+              Pricing
+            </a>
+            <a href="#contact" className="font-medium hover:text-red-600">
               Contact
-            </Link>
+            </a>
           </nav>
 
           {/* CTA Button */}
@@ -85,37 +85,37 @@ export default function Header() {
         <div className="md:hidden bg-white text-neutral-900 shadow-lg">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
-              <Link href="/" className="py-2 font-medium hover:text-red-600" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="/" className="py-2 font-medium hover:text-red-600" onClick={() => setIsMobileMenuOpen(false)}>
                 Home
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#services"
                 className="py-2 font-medium hover:text-red-600"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Services
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#pricing"
                 className="py-2 font-medium hover:text-red-600"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Pricing
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#about"
                 className="py-2 font-medium hover:text-red-600"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#contact"
                 className="py-2 font-medium hover:text-red-600"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
-              </Link>
+              </a>
               <Button className="bg-red-600 text-white hover:bg-red-700">
                 <Phone className="mr-2 h-4 w-4" />
                 (512) 533-9274
